@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  mysqld:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+    entrypoint: sh -c "
+      echo hydra;
+      echo 'CREATE DATABASE hydra;' > /docker-entrypoint-initdb.d/init.sql;
+      echo kratos;
+      echo 'CREATE DATABASE kratos;' >> /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci;
+      "
+    networks:
+      - intranet
+
+networks:
+  intranet:
