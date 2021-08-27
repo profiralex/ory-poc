@@ -1,10 +1,18 @@
 args=$(filter-out $@,$(MAKECMDGOALS))
 
-up:
-	docker-compose -f docker-compose-db.yml -f docker-compose-kratos.yml -f docker-compose-hydra.yml up -d
+up-db:
+	docker-compose -f docker-compose-db.yml up -d
+
+up-kratos:
+	docker-compose -f docker-compose-db.yml -f docker-compose-kratos.yml up -d
+
+up-hydra:
+	docker-compose -f docker-compose-db.yml -f docker-compose-hydra.yml up -d
+
+up: up-db up-kratos up-hydra
 
 stop:
-	docker-compose -f docker-compose-db.yml -f docker-compose-kratos.yml -f docker-compose-hydra.yml stop
+	docker-compose -f docker-compose-db.yml -f docker-compose-kratos.yml -f docker-compose-hydra.yml stop $(args)
 
 restart: stop up
 

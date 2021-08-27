@@ -4,10 +4,11 @@ serve:
 
 urls:
   self:
-    issuer: http://127.0.0.1:4444
-  consent: http://127.0.0.1:3000/consent
-  login: http://127.0.0.1:3000/login
-  logout: http://127.0.0.1:3000/logout
+    issuer: http://hydra.localhost:4444
+  error: http://hydra.localhost:4455/error
+  consent: http://hydra.localhost:4455/auth/hydra/consent
+  login: http://hydra.localhost:4455/auth/hydra/login
+  logout: http://hydra.localhost:4455/logout
 
 secrets:
   system:
@@ -21,3 +22,10 @@ oidc:
     pairwise:
       salt: youReallyNeedToChangeThis
 
+strategies:
+  access_token: jwt
+
+ttl:
+  access_token: 1m
+  id_token: 1m
+  refresh_token: 72h

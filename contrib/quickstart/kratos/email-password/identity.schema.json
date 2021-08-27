@@ -34,8 +34,15 @@
             },
             "last": {
               "type": "string"
+            },
+            "tast": {
+              "type": "string",
+              "minLength": 5
             }
-          }
+          },
+          "required": [
+            "tast"
+          ]
         }
       },
       "required": [
